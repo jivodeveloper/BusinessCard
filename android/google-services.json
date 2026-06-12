@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "73033635378",
+    "project_id": "businesscard-a9cf7",
+    "storage_bucket": "businesscard-a9cf7.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:73033635378:android:8d87b3a51f2fb77e388e2b",
+        "android_client_info": {
+          "package_name": "com.jivo.businesscard.businesscard"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA8UdQH31kaYiSt0iuqK6FvL6N2ikLQiPg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
