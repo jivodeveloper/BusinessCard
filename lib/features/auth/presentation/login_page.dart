@@ -1,4 +1,3 @@
-import 'package:businesscard/core/firebase_bootstrap.dart';
 import 'package:businesscard/core/widgets/status_banner.dart';
 import 'package:businesscard/features/auth/application/auth_controller.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +25,6 @@ class _LoginPageState extends ConsumerState<LoginPage> {
   @override
   Widget build(BuildContext context) {
     final authState = ref.watch(authControllerProvider);
-    final firebaseStatus = ref.watch(firebaseStatusProvider);
     final theme = Theme.of(context);
 
     return Scaffold(
@@ -142,11 +140,12 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                                 const SizedBox(height: 18),
                                 TextField(
                                   controller: _usernameController,
+                                  keyboardType: TextInputType.emailAddress,
                                   textInputAction: TextInputAction.next,
                                   decoration: const InputDecoration(
-                                    labelText: 'Username',
-                                    // helperText:
-                                    //     'Plain usernames are mapped to a Firebase email and can be created on first sign-in.',
+                                    labelText: 'Email or Username',
+                                    helperText:
+                                        'Use a Firebase email like aahar831@gmail.com, or enter a username.',
                                     prefixIcon: Icon(
                                       Icons.alternate_email_rounded,
                                     ),

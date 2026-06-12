@@ -12,6 +12,7 @@ class SavedBusinessCard {
     this.imagePath,
     this.remotePath,
     this.createdBy = '',
+    this.ownerEmail = '',
   });
 
   final String id;
@@ -24,6 +25,7 @@ class SavedBusinessCard {
   final String? imagePath;
   final String? remotePath;
   final String createdBy;
+  final String ownerEmail;
 
   String get subtitle {
     if (company.isNotEmpty && phone.isNotEmpty) {
@@ -45,7 +47,11 @@ class SavedBusinessCard {
     return parts.join('\n');
   }
 
-  Map<String, dynamic> toFirestoreMap({String? ownerUid, String? createdBy}) {
+  Map<String, dynamic> toFirestoreMap({
+    String? ownerUid,
+    String? ownerEmail,
+    String? createdBy,
+  }) {
     return {
       'image_path': remotePath ?? imagePath ?? '',
       'created_date': FieldValue.serverTimestamp(),
@@ -56,6 +62,8 @@ class SavedBusinessCard {
       'phone': phone,
       'email': email,
       if (ownerUid != null && ownerUid.trim().isNotEmpty) 'owner_uid': ownerUid,
+      if (ownerEmail != null && ownerEmail.trim().isNotEmpty)
+        'owner_email': ownerEmail.trim(),
       if (createdBy != null && createdBy.trim().isNotEmpty)
         'created_by': createdBy.trim(),
     };
@@ -112,6 +120,7 @@ class SavedBusinessCard {
       imagePath: data['image_path'] as String?,
       remotePath: data['image_path'] as String?,
       createdBy: data['created_by'] as String? ?? '',
+      ownerEmail: data['owner_email'] as String? ?? '',
     );
   }
 
@@ -126,6 +135,7 @@ class SavedBusinessCard {
     String? imagePath,
     String? remotePath,
     String? createdBy,
+    String? ownerEmail,
   }) {
     return SavedBusinessCard(
       id: id ?? this.id,
@@ -138,6 +148,7 @@ class SavedBusinessCard {
       imagePath: imagePath ?? this.imagePath,
       remotePath: remotePath ?? this.remotePath,
       createdBy: createdBy ?? this.createdBy,
+      ownerEmail: ownerEmail ?? this.ownerEmail,
     );
   }
 }

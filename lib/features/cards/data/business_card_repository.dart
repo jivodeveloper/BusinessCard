@@ -81,10 +81,21 @@ class BusinessCardRepository {
     );
 
     final createdBy = _usernameForUser(user);
-    final cardToSave = card.copyWith(remotePath: remotePath, createdBy: createdBy);
+    final ownerEmail = user.email?.trim() ?? '';
+    final cardToSave = card.copyWith(
+      remotePath: remotePath,
+      createdBy: createdBy,
+      ownerEmail: ownerEmail,
+    );
     final docRef = await _firestore
         .collection(AppConfig.cardsCollection)
-        .add(cardToSave.toFirestoreMap(ownerUid: user.uid, createdBy: createdBy));
+        .add(
+          cardToSave.toFirestoreMap(
+            ownerUid: user.uid,
+            ownerEmail: ownerEmail,
+            createdBy: createdBy,
+          ),
+        );
 
     return cardToSave.copyWith(id: docRef.id);
   }
